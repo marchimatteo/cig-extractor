@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+aggiudicatari/
+build/
+cig/
+cup/
+dist/
+main.exe
+main.spec
+partecipanti/
+risultato.xlsx
