@@ -23,7 +23,7 @@ def get_files(path: str) -> list[str]:
     files = [f for f in listdir(path) if isfile(join(path, f))]
     files = reorder_files(files)
     for file_key, file_name in enumerate(files):
-        files[file_key] = path + file_name
+        files[file_key] = join(path, file_name)
 
     print('Trovato ' + str(len(files)) + ' files nella cartella cig.')
     if len(files) == 0:
@@ -82,7 +82,7 @@ def process_secondary_files(result_sheet: ResultSheet, path: str):
         file_handler.clean_up()
 
 def execute(config: Configuration) -> None: 
-    path_cig = config.get_cig_folder() + '/'
+    path_cig = config.get_cig_folder()
     if not os.path.isdir(path_cig):
         raise Exception('Errore, cartella dei CIG "' + config.get_cig_folder() + '" non trovata')
     
@@ -92,7 +92,7 @@ def execute(config: Configuration) -> None:
         if not os.path.isdir(folder):
             print('Attenzione, cartella "' + folder + '" non trovata.')
         else:
-            path_others.append(folder + '/')
+            path_others.append(folder)
 
     result_sheet = ResultSheet(config)
     
