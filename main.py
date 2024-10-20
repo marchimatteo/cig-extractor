@@ -1,7 +1,6 @@
 #pyinstaller --onefile main.py result_sheet.py
 import os.path
 import sys
-import zipfile
 
 import ijson
 from os import listdir
@@ -17,7 +16,28 @@ def quit_because(reason: str) -> None:
     print(reason)
     sys.exit()
 
-# shutil.unpack_archive(filename[, extract_dir[, format[, filter]]])
+
+def print_welcome_message() -> None:
+    print("""
+┌───────────────────────────────────────────────────────────────────────────────┐
+│                                                                               │
+│   ██████╗██╗ ██████╗                                                          │
+│  ██╔════╝██║██╔════╝          # Version: 0.1.0                                │
+│  ██║     ██║██║  ███╗         # Released under MIT license                    │
+│  ██║     ██║██║   ██║         # github.com/marchimatteo/cig-extractor         │
+│  ╚██████╗██║╚██████╔╝                                                         │
+│   ╚═════╝╚═╝ ╚═════╝                                                          │
+│                                                                               │
+│  ███████╗██╗  ██╗████████╗██████╗  █████╗  ██████╗████████╗ ██████╗ ██████╗   │
+│  ██╔════╝╚██╗██╔╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗  │
+│  █████╗   ╚███╔╝    ██║   ██████╔╝███████║██║        ██║   ██║   ██║██████╔╝  │
+│  ██╔══╝   ██╔██╗    ██║   ██╔══██╗██╔══██║██║        ██║   ██║   ██║██╔══██╗  │
+│  ███████╗██╔╝ ██╗   ██║   ██║  ██║██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║  │
+│  ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝  │
+│                                                                               │
+└───────────────────────────────────────────────────────────────────────────────┘
+    """)
+
 
 def get_files(path: str) -> list[str]:
     files = [f for f in listdir(path) if isfile(join(path, f))]
@@ -139,6 +159,7 @@ def execute(config: Configuration) -> None:
 
 
 if __name__ == '__main__':
+    print_welcome_message()
     config = Configuration()
     if config.get_debug_mode():
         execute(config)
