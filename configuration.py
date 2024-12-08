@@ -14,7 +14,8 @@ class Configuration:
             config['generali'] = {
                 'debug_mode': 'false',
                 'cf_amministrazione': '00124430323',
-                'ignora_colonne': 'COD_CPV,DESCRIZIONE_CPV,FLAG_PREVALENTE'
+                'ignora_colonne': 'COD_CPV,DESCRIZIONE_CPV,FLAG_PREVALENTE',
+                'ignora_colonne_per_duplicati': 'CIG,ID_AGGIUDICAZIONE'
             }
             config['cartelle'] = {
                 'cartella_cig': 'cig',
@@ -36,6 +37,9 @@ class Configuration:
         
     def get_columns_to_ignore(self) -> list[str]:
         return self._get_list_from_value(self._config_file.get('generali', 'ignora_colonne', fallback=''), True)
+    
+    def get_columns_to_ignore_for_duplicates(self) -> list[str]:
+        return self._get_list_from_value(self._config_file.get('generali', 'ignora_colonne_per_duplicati', fallback=''), True)
         
     def get_cf_amministrazione(self) -> str:
         return self._config_file.get('generali', 'cf_amministrazione', fallback='00124430323')
