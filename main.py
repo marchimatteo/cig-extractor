@@ -141,7 +141,7 @@ def execute(config: Configuration) -> None:
                 elif prefix != '':
                     line.add(prefix, value)
                 elif event == 'end_map':
-                    if line.has('cf_amministrazione_appaltante', config.get_cf_amministrazione()):
+                    if line.has('cf_amministrazione_appaltante', config.get_cf_amministrazioni()):
                         result_sheet.add_line(line, file_name)
                         line_counter += 1
                         added_lines += 1

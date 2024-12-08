@@ -13,7 +13,7 @@ class Configuration:
         if len(config.sections()) == 0:
             config['generali'] = {
                 'debug_mode': 'false',
-                'cf_amministrazione': '00124430323',
+                'cf_amministrazioni': '00124430323,02985660303,01772890933,01337320327,00623340932,02948180308',
                 'ignora_colonne': 'COD_CPV,DESCRIZIONE_CPV,FLAG_PREVALENTE',
                 'ignora_colonne_per_duplicati': 'CIG,ID_AGGIUDICAZIONE'
             }
@@ -41,8 +41,8 @@ class Configuration:
     def get_columns_to_ignore_for_duplicates(self) -> list[str]:
         return self._get_list_from_value(self._config_file.get('generali', 'ignora_colonne_per_duplicati', fallback=''), True)
         
-    def get_cf_amministrazione(self) -> str:
-        return self._config_file.get('generali', 'cf_amministrazione', fallback='00124430323')
+    def get_cf_amministrazioni(self) -> list[str]:
+        return self._get_list_from_value(self._config_file.get('generali', 'cf_amministrazioni', fallback='00124430323'), False)
     
     def _get_list_from_value(self, value, to_upper: bool) -> list[str]:
         my_list = []

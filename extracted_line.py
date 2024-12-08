@@ -19,6 +19,6 @@ class ExtractedLine:
     def get(self) -> dict:
         return self._internal_dict
 
-    def has(self, key, value) -> bool:
-        return key in self._internal_dict and self._internal_dict[key] == value
+    def has(self, key, value: list[str]) -> bool:
+        return key in self._internal_dict and self._internal_dict[key] in value
     
