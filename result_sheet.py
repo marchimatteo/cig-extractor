@@ -103,7 +103,7 @@ class ResultSheet:
         found = False
         for column_name, column_value in line.items():
             column_name = column_name.upper()
-            if column_name == 'CIG':
+            if column_name in self._config.get_columns_to_ignore_for_duplicates():
                 continue
             if column_name in self._columns_map:
                 column_key = self._columns_map.index(column_name)
